@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Animation waves</title>
+    <style>
+    body{
+      margin: 0;
+    }
+
+      .wave{
+        width: 2402px;
+        height: 427px;
+        /*border-radius: 50%;*/
+        background: url(waves.png) center no-repeat;
+        position: absolute;
+        animation: 5s waves ease-in-out infinite alternate;
+      }
+      .waves{
+        position: absolute;
+        left:-180px;
+        /*left:0;
+        right: 0;
+        height: 200px;
+        bottom:0;*/
+        bottom:-135px;
+        height: 427px;
+        width: 2402px;
+
+
+
+      }
+      .wave.a{
+        background-position: 0 -854px;
+      }
+      .wave.b{
+        background-position: 0 -427px;
+        animation-delay: .6s;
+      }
+      .wave.c{
+        animation-delay: 1.2s;
+        background-position: 0 0;
+      }
+      .container{
+        position: relative;
+        height: 500px;
+        background: #0F9BF6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+                overflow: hidden;
+      }
+      .content{
+        font-family: Arial;
+        text-align: center;
+        font-size: 2em;
+        color: rgba(255, 255, 255, .8);
+      }
+      @keyframes waves {
+        0%{
+          transform: translateX(0, 0);
+        }
+        50%{
+           transform: translate(-80px, 30px);
+        }
+        100%{
+          transform: translateX(160px, -60px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h1>Hola estas con animaciones waves :D</h1>
+        <p>este es el subparrago jajaj de las waves xd</p>
+      </div>
+
+     <div class="waves">
+
+       <div class="wave circulo a">
+
+       </div>
+       <div class="wave circulo b">
+
+       </div>
+       <div class="wave circulo c">
+
+       </div>
+
+     </div>
+
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sistema de notificaciones</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
+
+    <style>
+    body{
+      height: 200vh;
+      margin: 0;
+    }
+    .header{
+      background: red;
+      display: flex;
+      height: 52px;
+      justify-content: flex-end;
+      padding-right: 200px;
+
+    }
+    .notification{
+      color: white;
+      width: 50px;
+      height: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+    }
+    @keyframes bell {
+      0%{
+        transform: rotate(35deg);
+      }
+      12.5%{
+        transform: rotate(-30deg);
+      }
+      25%{
+        transform: rotate(25deg);
+      }
+      37.5%{
+        transform: rotate(-20deg);
+      }
+      50%{
+        transform: rotate(15deg);
+
+      }
+      62.5%{
+        transform: rotate(-10deg);
+      }
+      75%{
+        transform: rotate(5deg);
+      }
+      100%{
+        transform: rotate(0deg);
+      }
+    }
+    .notification::after{
+      content:attr(data-count);
+      transition: .3s;
+      transform:scale(.5);
+      font-size: 11px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 14px;
+      min-height: 14px;
+      background: green;
+      border-radius: 50%;
+      font-family: Arial;
+      position: absolute;
+      top:5px;
+      right: 5px;
+      will-change: opacity, transform;
+      opacity: 0;
+    }
+
+   .notification.showCount::after{
+       opacity: 1;
+       transform: scale(1);
+   }
+
+    .notification::before{
+      content:"\f0f3";
+      font-family: "FontAwesome";
+      transform-origin: center top;
+      display: block;
+    }
+.notification.notify::before{
+    animation-name: bell;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+  }
+    </style>
+  </head>
+  <body>
+
+    <header class="header">
+      <button id="boton" class="btn-primary">Enviar Notificacion</button>
+      <div id="notification" class="notification">  </div>
+
+    </header>
+
+
+<script type="text/javascript">
+const $boton = document.getElementById('boton');
+
+const $bell = document.getElementById('notification');
+
+  $boton.addEventListener('click', function(){
+    const count = Number($bell.getAttribute('data-count')) || 0;
+    $bell.setAttribute('data-count', count+1);
+
+    $bell.classList.add('showCount');
+    $bell.classList.add('notify');
+  });
+
+  $bell.addEventListener('animationend', function(){
+    $bell.classList.remove('notify');
+  });
+</script>
+
+  </body>
+</html>
